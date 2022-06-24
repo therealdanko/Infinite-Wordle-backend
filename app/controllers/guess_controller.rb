@@ -8,15 +8,16 @@ class GuessController < ApplicationController
         guess.to_json
     end
     
-    post "/guesses" do
-        guess = Guess.create(guess_params)
+    post "/guess_attempt" do
+
+        guess = Guess.attempt(guess_params)
         guess.to_json
     end
 
        private
 
 def guess_params
-    allowed_params = %w(input hint word game)
+    allowed_params = %w(input word game)
     params.filter {|param,value| allowed_params.include?(param)}
 end
 

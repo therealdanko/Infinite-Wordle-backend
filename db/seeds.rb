@@ -14,7 +14,7 @@ Bank.words.each do |word|
 end
 
 test_word = Word.all.sample
-test_player = Player.create(input_name: "Mr.test")
+test_player = Player.create(name: "Mr.test")
 test_game = Game.create(player: test_player, word: test_word)
 test_guess = Guess.create(game: test_game, word: test_word, input: "guess")
 

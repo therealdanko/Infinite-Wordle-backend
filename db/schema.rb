@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_06_21_175259) do
   end
 
   create_table "players", force: :cascade do |t|
-    t.string "input_name"
+    t.string "name"
   end
 
   create_table "words", force: :cascade do |t|

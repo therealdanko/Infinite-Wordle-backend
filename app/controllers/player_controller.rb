@@ -9,14 +9,17 @@ class PlayerController < ApplicationController
         player.to_json
     end
     
-    post "/players" do
-        player = Player.create(player_params)
-        player.to_json
-       end
+    post "/create_player" do
+        player = Player.create(name: params[:name])
+        # player = Player.find_or_create_by(player_params)
+        word = Word.all.sample
+        game = Game.create(player: player, word: word)
+        game.to_json()
+    end
     
     patch "players/:id" do
         player = Player.find(params[:id])
-        player.update(params[:input_name])
+        player.update(params[:name])
         player.to_json
     end
 
@@ -29,7 +32,7 @@ class PlayerController < ApplicationController
     private
 
 def player_params
-    allowed_params = %w(input_name game word)
+    allowed_params = %w(name game word)
     params.filter {|param,value| allowed_params.include?(param)}
 end
 
